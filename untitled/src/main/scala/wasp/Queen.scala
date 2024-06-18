@@ -1,0 +1,5 @@
+package wasp
+
+class Queen {
+
+}
