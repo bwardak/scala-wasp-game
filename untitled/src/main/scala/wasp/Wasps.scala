@@ -1,6 +1,8 @@
 package wasp
 
 abstract class Wasps {
-  def getHit: Wasps
-  def hasHp(): Unit
+  def getHit: Wasps = {
+    hasHp
+  }
+  def hasHp: Wasps
 }

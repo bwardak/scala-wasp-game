@@ -1,21 +1,22 @@
 package wasp
 
 class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
+  showHp()
   override def getHit: Queen = {
-    Queen(name, isAlive, hp - 7)
+    hasHp
   }
 
-  override def hasHp(): Unit = {
-    if (hp <= 0) Queen(name, false, hp)
-    else getHit
+  override def hasHp: Queen = {
+    if (hp <= 0) {
+      println("dead")
+      Queen(name, false, 0)
+    }
+    else {
+      Queen(name, isAlive, hp - 40)
+    }
   }
 
-  def queenDead(): Unit = {
-
-  }
-
-  def showHp(): Queen = {
+  private def showHp(): Unit = {
     println(hp)
-    Queen(name, isAlive, hp)
   }
 }
