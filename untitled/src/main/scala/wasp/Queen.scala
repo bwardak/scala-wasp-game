@@ -14,7 +14,8 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
 
   }
 
-  def showHp(): Unit = {
+  def showHp(): Queen = {
     println(hp)
+    Queen(name, isAlive, hp)
   }
 }
