@@ -1,8 +1,9 @@
 package wasp
 
 class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps {
-  showHp()
-  override def getHit: Wasps = super.getHit
+  override def getHit: Wasps = {
+    hasHp
+  }
 
   override def hasHp: Wasps = {
 
@@ -15,7 +16,16 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps 
     }
   }
 
-  private def showHp(): Unit = {
-    println(hp)
+  override def hitpoints: Int = {
+    hp
+  }
+
+  override def displayWasp: String = {
+    s"$name hp: $hp     "
+  }
+
+  override def isDead: Boolean = {
+    if (isAlive) true
+    else false
   }
 }

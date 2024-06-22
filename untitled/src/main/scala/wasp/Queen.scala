@@ -1,7 +1,6 @@
 package wasp
 
 class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
-  showHp()
   override def getHit: Queen = {
     hasHp
   }
@@ -16,7 +15,16 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
     }
   }
 
-  private def showHp(): Unit = {
-    println(hp)
+  override def hitpoints: Int = {
+    hp
+  }
+
+  override def displayWasp: String = {
+    s"$name hp: $hp     "
+  }
+
+  override def isDead: Boolean = {
+    if (isAlive) true
+    else false
   }
 }

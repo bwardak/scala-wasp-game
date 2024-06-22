@@ -2,7 +2,7 @@ package wasp
 
 import scala.io.StdIn._
 
-class Menu {
+class Interface {
 
   def gameLaunchScreen(): Unit = {
     println("Welcome to wasp game")
