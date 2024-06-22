@@ -12,7 +12,7 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps 
       Worker(name, false, 0)
     }
     else {
-      Worker(name, isAlive, hp - 10)
+      if (hp <= 10) Worker(name, isAlive, 0) else Worker(name, isAlive, hp - 10)
     }
   }
 
