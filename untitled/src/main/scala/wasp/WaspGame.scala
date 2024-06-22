@@ -14,14 +14,12 @@ object WaspGame extends App {
   var worker2 = new Worker("w2")
   var worker3 = new Worker("w3")
 
+
+  val menu = Interface(List(queen, drone1, drone2, drone3, drone4, drone5, worker1, worker2, worker3))
   
 
-
-  val menu = Interface()
-  val gameInterface = Interface()
-
-//  menu.gameLaunchScreen()
-  val game = Game(List(queen))
+  menu.gameLaunchScreen()
+  
 
 
 

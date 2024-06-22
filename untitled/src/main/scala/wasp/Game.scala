@@ -31,15 +31,15 @@ class Game(enemyWasps: List[Wasps] = List[Wasps]()) {
   }
 
   def nextAction(): Unit = {
-    println("\nType 1 to fire: ")
-    val choice = readInt()
-    if (choice == 1) attack()
+    println("\nType fire to fire: ")
+    val choice = readLine
+    if (choice.toLowerCase().equals("fire")) attack()
   }
 
   def winCondition(): Unit = {
     if (enemyWasps.isEmpty) {
       println("YOU KILLED THE QUEEN. YOU WIN!!!")
-      Interface().playAgain(originalWasps)
+      Interface(originalWasps).playAgain()
     } else if (enemyWasps.nonEmpty & enemyWasps.head.hitpoints != 0){
       displayWasps()
     }
