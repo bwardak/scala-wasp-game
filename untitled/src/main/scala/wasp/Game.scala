@@ -1,17 +1,30 @@
 package wasp
 
-import wasp.WaspGame.{drone1, drone2, drone3, drone4, drone5, queen, worker1, worker2, worker3}
+import wasp.WaspGame.{drone1, drone2, drone3, drone4, drone5, drone6, drone7, drone8, queen, worker1, worker2, worker3, worker4, worker5}
 
 import scala.io.StdIn.*
 import scala.language.postfixOps
 import scala.util.Random
 
 class Game(enemyWasps: List[Wasps] = List[Wasps]()) {
-  val originalWasps: List[Wasps] = List(queen, drone1, drone2, drone3, drone4, drone5, worker1, worker2, worker3)
+  val originalWasps: List[Wasps] = List(queen, worker1, worker2, worker3, worker4, worker5, drone1, drone2, drone3, drone4, drone5, drone6, drone7, drone8)
+
+
+
   enemyWasps.foreach(w => if (w.hitpoints == 0) removeDeadWasp())
   winCondition()
   def displayWasps(): Unit = {
-    enemyWasps.foreach(w => print(w.displayWasp))
+    println("                                                      " + enemyWasps.head.displayWasp)
+    print("              ")
+    for (i <- Range(1, 6)) {
+      print("        " + enemyWasps(i).displayWasp)
+    }
+    println("\n")
+    print("    ")
+    for (i <- Range(6, 14)) {
+      print("  " + enemyWasps(i).displayWasp)
+    }
+    println("")
     nextAction()
   }
 
@@ -20,13 +33,17 @@ class Game(enemyWasps: List[Wasps] = List[Wasps]()) {
     Game(deadWaspRemovedList)
   }
 
+
   def attack(): Game = {
     val random = new Random()
     println("")
     println("")
+    println(enemyWasps.length)
     val randomNumber = random.nextInt(enemyWasps.length)
-    val (firstHalf, secondHalf) = enemyWasps.splitAt(randomNumber)
-    val newWasps = firstHalf ::: (enemyWasps(randomNumber).getHit :: secondHalf.tail)
+    println(randomNumber)
+    val colorResetWasps = enemyWasps.map(w => w.resetColor)
+    val (firstHalf, secondHalf) = colorResetWasps.splitAt(randomNumber)
+    val newWasps = firstHalf ::: (colorResetWasps(randomNumber).getHit :: secondHalf.tail)
     Game(newWasps)
   }
 
@@ -37,11 +54,20 @@ class Game(enemyWasps: List[Wasps] = List[Wasps]()) {
   }
 
   def winCondition(): Unit = {
-    if (enemyWasps.isEmpty) {
+    val setOfCurrentWasps = enemyWasps.toSet
+    val isQueenAlive = setOfCurrentWasps.exists {
+      case queen: Queen => true
+      case _ => false
+    }
+    if (!isQueenAlive) {
       println("YOU KILLED THE QUEEN. YOU WIN!!!")
       Interface(originalWasps).playAgain()
     } else if (enemyWasps.nonEmpty & enemyWasps.head.hitpoints != 0){
       displayWasps()
     }
+  }
+
+  def changeTextColorBack(): Unit = {
+
   }
 }

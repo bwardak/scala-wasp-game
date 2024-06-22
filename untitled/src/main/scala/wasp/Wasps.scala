@@ -8,4 +8,5 @@ abstract class Wasps {
   def displayWasp: String
   def isDead: Boolean
   def hitpoints: Int
+  def resetColor: Wasps
 }

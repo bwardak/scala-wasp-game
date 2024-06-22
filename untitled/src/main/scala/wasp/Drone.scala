@@ -1,6 +1,8 @@
 package wasp
 
-class Drone(name: String, isAlive: Boolean = true, hp: Int = 60) extends Wasps{
+class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolean = false) extends Wasps{
+  val RED = "\u001b[31m"
+  val RESET = "\u001b[0m"
   override def getHit: Wasps = {
     hasHp
   }
@@ -12,8 +14,12 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60) extends Wasps{
       Drone(name, false, 0)
     }
     else {
-      Drone(name, isAlive, hp - 12)
+      Drone(name, isAlive, hp - 12, true)
     }
+  }
+
+  def resetColor: Wasps = {
+    Drone(name, isAlive, hp, false)
   }
 
   override def hitpoints: Int = {
@@ -21,7 +27,7 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60) extends Wasps{
   }
 
   override def displayWasp: String = {
-    s"$name hp: $hp     "
+    if (lastHit) s"$RED$name hp: $hp$RESET     " else s"$name hp: $hp     "
   }
 
   override def isDead: Boolean = {

@@ -1,6 +1,8 @@
 package wasp
 
-class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps {
+class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boolean = false) extends Wasps {
+  val RED = "\u001b[31m"
+  val RESET = "\u001b[0m"
   override def getHit: Wasps = {
     hasHp
   }
@@ -12,8 +14,12 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps 
       Worker(name, false, 0)
     }
     else {
-      if (hp <= 10) Worker(name, isAlive, 0) else Worker(name, isAlive, hp - 10)
+      if (hp <= 10) Worker(name, isAlive, 0, true) else Worker(name, isAlive, hp - 10, true)
     }
+  }
+
+  def resetColor: Wasps = {
+    Worker(name, isAlive, hp, false)
   }
 
   override def hitpoints: Int = {
@@ -21,7 +27,7 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68) extends Wasps 
   }
 
   override def displayWasp: String = {
-    s"$name hp: $hp     "
+    if (lastHit) s"$RED$name hp: $hp$RESET     " else s"$name hp: $hp     "
   }
 
   override def isDead: Boolean = {

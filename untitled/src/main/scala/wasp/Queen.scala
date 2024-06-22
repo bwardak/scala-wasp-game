@@ -1,6 +1,8 @@
 package wasp
 
-class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
+class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolean = false) extends Wasps {
+  val RED = "\u001b[31m"
+  val RESET = "\u001b[0m"
   override def getHit: Queen = {
     hasHp
   }
@@ -11,8 +13,12 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
       Queen(name, false, 0)
     }
     else {
-      if (hp <= 7) Queen(name, isAlive, 0) else Queen(name, isAlive, hp - 40)
+      if (hp <= 7) Queen(name, isAlive, 0, true) else Queen(name, isAlive, hp - 40, true)
     }
+  }
+
+  def resetColor: Wasps = {
+    Queen(name, isAlive, hp, false)
   }
 
   override def hitpoints: Int = {
@@ -20,7 +26,7 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80) extends Wasps {
   }
 
   override def displayWasp: String = {
-    s"$name hp: $hp     "
+    if (lastHit) s"$RED$name\n                                                      hp: $hp$RESET\n" else s"$name\n                                                      hp: $hp\n"
   }
 
   override def isDead: Boolean = {
