@@ -13,7 +13,7 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
       Queen(name, false, 0)
     }
     else {
-      if (hp <= 7) Queen(name, isAlive, 0, true) else Queen(name, isAlive, hp - 40, true)
+      if (hp <= 7) Queen(name, isAlive, 0, true) else Queen(name, isAlive, hp - 0, true)
     }
   }
 
@@ -26,7 +26,7 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
   }
 
   override def displayWasp: String = {
-    if (lastHit) s"$RED$name\n                                                      hp: $hp$RESET\n" else s"$name\n                                                      hp: $hp\n"
+    if (lastHit) s"$RED$name hp: $hp$RESET\n" else s"$name hp: $hp\n"
   }
 
   override def isDead: Boolean = {
