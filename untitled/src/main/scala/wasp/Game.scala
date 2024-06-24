@@ -53,6 +53,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     println(s"\nType $randomWord to fire: ")
     val choice = readLine
     if (choice.toLowerCase().equals(s"$randomWord")) attack()
+    else if (choice.toLowerCase().equals("quit")) Interface(playerName).startGameOrReadRules()
     else {
       println("INCORRECT!")
       nextAction()
