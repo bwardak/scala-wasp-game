@@ -23,7 +23,7 @@ def createNewWasps(): List[Wasps] = {
   )
 }
 
-  val menu = new Interface(createNewWasps())
+  val menu = new Interface("")
   menu.gameLaunchScreen()
 
 
