@@ -4,6 +4,7 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boole
   val RED = "\u001b[31m"
   val RESET = "\u001b[0m"
   val RED_BACKGROUND = "\u001B[41m"
+  val GREEN_BACKGROUND = "\u001b[42m"
   override def getHit: Wasps = {
     hasHp
   }
@@ -29,16 +30,18 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boole
 
   override def displayWasp: String = {
     if (lastHit) {
-      s"$RED$name hp: $healthBar ($hp)$RESET     "
+      s"$RED$name hp: $healthBar ($hp)$RESET     \n"
     } else if (!isAlive) {
-      s"$RED_BACKGROUND$name hp: $healthBar ($hp)$RESET     "
+      s"$RED_BACKGROUND$name hp: $healthBar ($hp)$RESET     \n"
     } else {
-      s"$name hp: $healthBar ($hp)     "
+      s"$name hp: $healthBar ($hp)     \n"
     }
   }
 
   def healthBar: String = {
-    "#".repeat(hp / 5)
+    if (hp < 20) {
+      s"$RED_BACKGROUND\u00A0$RESET".repeat(hp / 5)
+    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(hp / 5)
   }
 
   override def isDead: Boolean = {
