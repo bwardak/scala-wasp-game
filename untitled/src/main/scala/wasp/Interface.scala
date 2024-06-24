@@ -10,6 +10,7 @@ class Interface(var playerName: String) {
   def gameLaunchScreen(): Unit = {
     println("Welcome to wasp game")
     println(s"${GOLD}__      ____ _ ___ _ __      \" ,  ,\n\\ \\ /\\ / / _` / __| '_ \\         \", ,\n \\ V  V / (_| \\__ \\ |_) |          \"\"     _---.    ..;%%%;, .\n  \\_/\\_/ \\__,_|___/ .__/             \"\" .\",  ,  .==% %%%%%%% ' .\n                  | |                 \"\", %%%   =%% %%%%%%;  ; ;-_\n                  |_|                 %; %%%%%  .;%;%%%\"%p ---; _  '-_\n                                      %; %%%%% __;%%;p/; O        --_ \"-,_\n                                       q; %%% /v \\;%p ;%%%%%;--__    \"'-__'-._\n                                       //\\\\\" // \\  % ;%%%%%%%;',/%\\_  __  \"'-_'\\_\n                                       \\  / //   \\/   ;%% %; %;/\\%%%%;;;;\\    \"- _\\\n                                          ,\"             %;  %%;  %%;;'  ';%       -\\-_\n                                     -=\\=\"             __%    %%;_ |;;    %%%\\          \\\n                                                   _/ _=      \\==_;;,_ %%%; % -_      /\n                                                  / /-          =%- ;%%%%; %%;  \"--__/\n                                                 //=             ==%-%%;  %; %\n                                                 /             _=_-  d  ;%; ;%;  :F_P:\n                                                 \\            =,-\"    d%%; ;%%;\n                                                             //        %  ;%%;\n                                                            //          d%%%\"\n                                                             \\           %%\n                                                                         V$RESET")
+    Thread.sleep(2000)
     println("Pick an option:")
     startGameOrReadRules()
   }
@@ -30,7 +31,7 @@ class Interface(var playerName: String) {
     if (choice == 1){
       println("Enter your name: ")
       playerName = readLine().trim
-      val waspList = WaspGame.createNewWasps()
+      val waspList = WaspList().createNewWasps()
       Game(waspList, playerName, 0, 0)
     }
     else if (choice == 2) rules()
@@ -53,11 +54,12 @@ class Interface(var playerName: String) {
       (username, userHits, userTimeTaken)
     }
     val sortedByTimeTaken = individualStats.sortBy(_._3)
-
+    println("\n".repeat(5))
     println(f"Rank  Player Name       Hits  Time Taken")
     sortedByTimeTaken.zipWithIndex.foreach {
       case ((pName, pHits, pTimeTaken), index) => println(f"${index + 1}%-4d  $pName%-16s  $pHits%-4d  $pTimeTaken%-5.2f seconds")
     }
+    println("\n".repeat(5))
     startGameOrReadRules()
   }
 
@@ -65,7 +67,7 @@ class Interface(var playerName: String) {
     println("Do you want to play again? (Y/N)")
     val choice = readLine()
     if (choice.toUpperCase().equals("Y")){
-      val waspList = WaspGame.createNewWasps()
+      val waspList = WaspList().createNewWasps()
       Game(waspList, playerName)
     }  else if (choice.toUpperCase().equals("N")) startGameOrReadRules()
     else {

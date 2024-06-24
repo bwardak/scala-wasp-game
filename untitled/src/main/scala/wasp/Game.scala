@@ -13,10 +13,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
   val startTimer: Long = System.nanoTime()
   val originalWasps: List[Wasps] = enemyWasps
 
-
-
   winCondition()
-
 
   private def displayWasps(): Unit = {
     printLine()
@@ -31,8 +28,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     val elapsedTime = endTimer - startTimer
     Game(deadWaspRemovedList, playerName, hits, timeTaken + elapsedTime)
   }
-
-
+  
   private def attack(): Game = {
     val random = new Random()
     println("")
