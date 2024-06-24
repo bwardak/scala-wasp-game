@@ -29,12 +29,16 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolea
 
   override def displayWasp: String = {
     if (lastHit) {
-      s"$RED$name hp: $hp$RESET     "
+      s"$RED$name hp: $healthBar ($hp)$RESET     "
     } else if (!isAlive) {
-      s"$RED_BACKGROUND$name hp: $hp$RESET     "
+      s"$RED_BACKGROUND$name hp: $healthBar ($hp)$RESET     "
     } else {
-      s"$name hp: $hp     "
+      s"$name hp: $healthBar ($hp)     "
     }
+  }
+
+  def healthBar: String = {
+    "#".repeat(hp / 5)
   }
 
   override def isDead: Boolean = {

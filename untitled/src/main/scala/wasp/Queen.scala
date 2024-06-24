@@ -26,7 +26,13 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
   }
 
   override def displayWasp: String = {
-    if (lastHit) s"$RED$name hp: $hp$RESET\n" else s"$name hp: $hp\n"
+    if (lastHit) {
+      s"$RED$name hp: $healthBar ($hp)$RESET\n"
+    }  else s"$name hp: $healthBar ($hp)\n"
+  }
+
+  def healthBar: String = {
+    "#".repeat(hp / 5)
   }
 
   override def isDead: Boolean = {

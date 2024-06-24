@@ -1,7 +1,7 @@
 package wasp
 
 
-
+import Words.words
 import java.io.{File, FileWriter, PrintWriter}
 import scala.io.StdIn.*
 import scala.language.postfixOps
@@ -46,9 +46,11 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
   }
 
   def nextAction(): Unit = {
-    println("\nType fire to fire: ")
+    val random = new Random()
+    val randomWord = words(random.nextInt(words.length))
+    println(s"\nType $randomWord to fire: ")
     val choice = readLine
-    if (choice.toLowerCase().equals("fire")) attack()
+    if (choice.toLowerCase().equals(s"$randomWord")) attack()
   }
 
   def winCondition(): Unit = {
@@ -70,7 +72,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
       val writer = new PrintWriter(new FileWriter(new File(csvFile), true))
       val totalTime: Double = timeTaken / 1e9
       val twoDecimalPointTotalTime = f"$totalTime%.2f"
-      println(playerName + " "  + hits + " " + twoDecimalPointTotalTime)
+      println("hits: "  + hits + " Time: " + twoDecimalPointTotalTime)
       writer.println(playerName + " " + hits + " " + twoDecimalPointTotalTime)
       writer.close()
       Interface(playerName).playAgain()
