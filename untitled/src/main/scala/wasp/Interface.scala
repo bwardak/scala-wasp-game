@@ -31,6 +31,7 @@ class Interface(var playerName: String) {
     if (choice == 1){
       println("Enter your name: ")
       playerName = readLine().trim
+      playerName = playerName.replaceAll("\\s", "")
       val waspList = WaspList().createNewWasps()
       Game(waspList, playerName, 0, 0)
     }
