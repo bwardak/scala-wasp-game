@@ -16,7 +16,7 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolea
       Drone(name, false, 0)
     }
     else {
-     if (hp == 12) Drone(name, false, 0, true) else Drone(name, isAlive, hp - 12, true)
+     if (hp == 12) Drone(name, false, 0, true) else Drone(name, isAlive, hp - 48, true)
     }
   }
 
@@ -39,9 +39,10 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolea
   }
 
   def healthBar: String = {
-    if (hp < 20) {
-      s"$RED_BACKGROUND\u00A0$RESET".repeat(hp / 5)
-    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(hp / 5)
+    val repeatAmount = Math.max(0, hp / 5)
+    if (hp <= 20) {
+      s"$RED_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
+    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
   }
 
   override def isDead: Boolean = {

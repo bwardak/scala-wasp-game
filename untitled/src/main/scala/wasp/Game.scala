@@ -17,6 +17,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
 
 
   def displayWasps(): Unit = {
+    printLine()
     enemyWasps.foreach(w => println(w.displayWasp))
     println("")
     nextAction()
@@ -24,7 +25,6 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
 
   def removeDeadWasp(): Unit = {
     val deadWaspRemovedList = enemyWasps.filter(w => w.hitpoints > 0)
-    println("11111111111111111")
     val endTimer = System.nanoTime()
     val elapsedTime = endTimer - startTimer
     Game(deadWaspRemovedList, playerName, hits, timeTaken + elapsedTime)
@@ -35,11 +35,13 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     val random = new Random()
     println("")
     println("")
-    val randomNumber = random.nextInt(enemyWasps.length)
+    var randomNumber = random.nextInt(enemyWasps.length)
+    while (enemyWasps(randomNumber).hitpoints == 0) {
+      randomNumber = random.nextInt(enemyWasps.length)
+    }
     val colorResetWasps = enemyWasps.map(w => w.resetColor)
     val (firstHalf, secondHalf) = colorResetWasps.splitAt(randomNumber)
     val newWasps = firstHalf ::: (colorResetWasps(randomNumber).getHit :: secondHalf.tail)
-    println("222222222")
     val endTimer = System.nanoTime()
     val elapsedTime = endTimer - startTimer
     Game(newWasps, playerName, hits + 1, timeTaken + elapsedTime)
@@ -51,6 +53,10 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     println(s"\nType $randomWord to fire: ")
     val choice = readLine
     if (choice.toLowerCase().equals(s"$randomWord")) attack()
+    else {
+      println("INCORRECT!")
+      nextAction()
+    }
   }
 
   def winCondition(): Unit = {
@@ -81,7 +87,9 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     }
   }
 
-  def changeTextColorBack(): Unit = {
-
+  def printLine(): Unit = {
+    println("\n".repeat(3))
+    println("-".repeat(200))
+    println("\n".repeat(3))
   }
 }

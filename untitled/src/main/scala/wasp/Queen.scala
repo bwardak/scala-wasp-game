@@ -15,7 +15,7 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
       Queen(name, false, 0)
     }
     else {
-      if (hp <= 7) Queen(name, false, 0, true) else Queen(name, isAlive, hp - 80, true)
+      if (hp <= 7) Queen(name, false, 0, true) else Queen(name, isAlive, hp - 73, true)
     }
   }
 
@@ -34,9 +34,10 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
   }
 
   def healthBar: String = {
-    if (hp < 20) {
-      s"$RED_BACKGROUND\u00A0$RESET".repeat(hp / 5)
-    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(hp / 5)
+    val repeatAmount = Math.max(0, hp / 5)
+    if (hp <= 20) {
+      s"$RED_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
+    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
   }
 
   override def isDead: Boolean = {

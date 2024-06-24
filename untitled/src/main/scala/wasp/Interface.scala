@@ -26,13 +26,17 @@ class Interface(var playerName: String) {
     val choice = readInt()
     if (choice == 1){
       println("Enter your name: ")
-      playerName = readLine()
+      playerName = readLine().trim
       val waspList = WaspGame.createNewWasps()
       Game(waspList, playerName, 0, 0)
     }
     else if (choice == 2) rules()
     else if (choice == 3) displayLeaderboard()
     else if (choice == 4) println("Thanks for playing!")
+    else {
+      println("Please input a valid number")
+      startGameOrReadRules()
+    }
   }
 
   def displayLeaderboard(): Unit = {
@@ -58,9 +62,12 @@ class Interface(var playerName: String) {
     println("Do you want to play again? (Y/N)")
     val choice = readLine()
     if (choice.toUpperCase().equals("Y")){
-      println("666666666666666666666666")
       val waspList = WaspGame.createNewWasps()
       Game(waspList, playerName)
-    }  else startGameOrReadRules()
+    }  else if (choice.toUpperCase().equals("N")) startGameOrReadRules()
+    else {
+      println("Invalid input. Please select Y or N")
+      playAgain()
+    }
   }
 }

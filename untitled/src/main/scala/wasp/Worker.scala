@@ -16,7 +16,7 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boole
       Worker(name, false, 0)
     }
     else {
-      if (hp <= 10) Worker(name, false, 0, true) else Worker(name, isAlive, hp - 10, true)
+      if (hp <= 10) Worker(name, false, 0, true) else Worker(name, isAlive, hp - 58, true)
     }
   }
 
@@ -39,9 +39,10 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boole
   }
 
   def healthBar: String = {
-    if (hp < 20) {
-      s"$RED_BACKGROUND\u00A0$RESET".repeat(hp / 5)
-    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(hp / 5)
+    val repeatAmount = Math.max(0, hp / 5)
+    if (hp <= 20) {
+      s"$RED_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
+    } else s"$GREEN_BACKGROUND\u00A0$RESET".repeat(repeatAmount)
   }
 
   override def isDead: Boolean = {
