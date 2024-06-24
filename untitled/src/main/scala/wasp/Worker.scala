@@ -16,7 +16,7 @@ class Worker(name: String, isAlive: Boolean = true, hp: Int = 68, lastHit: Boole
       Worker(name, false, 0)
     }
     else {
-      if (hp <= 10) Worker(name, false, 0, true) else Worker(name, isAlive, hp - 58, true)
+      if (hp <= 10) Worker(name, false, 0, true) else Worker(name, isAlive, hp - 10, true)
     }
   }
 

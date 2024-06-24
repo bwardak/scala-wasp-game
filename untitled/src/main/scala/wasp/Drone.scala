@@ -16,7 +16,7 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolea
       Drone(name, false, 0)
     }
     else {
-     if (hp == 12) Drone(name, false, 0, true) else Drone(name, isAlive, hp - 48, true)
+     if (hp == 12) Drone(name, false, 0, true) else Drone(name, isAlive, hp - 12, true)
     }
   }
 

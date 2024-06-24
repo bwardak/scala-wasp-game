@@ -17,7 +17,7 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
       Queen(name, false, 0)
     }
     else {
-      if (hp <= 7) Queen(name, false, 0, true) else Queen(name, isAlive, hp - 73, true)
+      if (hp <= 7) Queen(name, false, 0, true) else Queen(name, isAlive, hp - 7, true)
     }
   }
 

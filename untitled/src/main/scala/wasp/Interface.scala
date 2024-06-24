@@ -16,7 +16,8 @@ class Interface(var playerName: String) {
 
   def rules(): Unit = {
     println(" - You must face 14 wasps and eliminate the queen")
-    println(" - Write the attack word to attack")
+    println(" - Write the given word to attack")
+    println(" - You may write 'quit' to exit the game early")
     startGameOrReadRules()
   }
 
