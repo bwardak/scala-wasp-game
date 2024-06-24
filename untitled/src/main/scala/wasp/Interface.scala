@@ -3,7 +3,7 @@ package wasp
 import scala.io.StdIn._
 
 class Interface(var waspList: List[Wasps]) {
-
+  var playerName = ""
   def gameLaunchScreen(): Unit = {
     println("Welcome to wasp game")
     println("Pick an option:")
@@ -22,9 +22,10 @@ class Interface(var waspList: List[Wasps]) {
     println("3) Quit")
     val choice = readInt()
     if (choice == 1){
-      println("5555555555555555555")
+      println("Enter your name: ")
+      playerName = readLine()
       waspList = WaspGame.createNewWasps()
-      Game(waspList)
+      Game(waspList, playerName)
     }
     else if (choice == 2) rules()
     else if (choice == 3) println("Thanks for playing!")
@@ -36,7 +37,7 @@ class Interface(var waspList: List[Wasps]) {
     if (choice.toUpperCase().equals("Y")){
       println("666666666666666666666666")
       waspList = WaspGame.createNewWasps()
-      Game(waspList)
+      Game(waspList, playerName)
     }  else startGameOrReadRules()
   }
 }
