@@ -72,14 +72,16 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
       case _ => false
     }
     if (!isQueenAlive) {
-//      terminateInstance = true
-      println("YOU KILLED THE QUEEN. YOU WIN!!!")
+      println("\n".repeat(17))
+      println("                                               YOU KILLED THE QUEEN. YOU WIN!!!\n")
       val csvFile = "C:\\Users\\bahee\\nology\\scala\\projects\\wasp-game\\scala-wasp-game\\untitled\\src\\scores.csv"
       val writer = new PrintWriter(new FileWriter(new File(csvFile), true))
       val totalTime: Double = timeTaken / 1e9
       val twoDecimalPointTotalTime = f"$totalTime%.2f"
-      println("hits: "  + hits + " Time: " + twoDecimalPointTotalTime)
+      println("                                               " + "hits: "  + hits + " Time: " + twoDecimalPointTotalTime)
+      println("\n")
       writer.println(playerName + " " + hits + " " + twoDecimalPointTotalTime)
+      println("\n".repeat(16))
       writer.close()
       Interface(playerName).playAgain()
     } else if (enemyWasps.nonEmpty & enemyWasps.head.hitpoints != 0){

@@ -32,7 +32,7 @@ class Drone(name: String, isAlive: Boolean = true, hp: Int = 60, lastHit: Boolea
     if (lastHit) {
       s"$RED$name hp: $healthBar ($hp)$RESET     \n"
     } else if (!isAlive) {
-      s"$RED_BACKGROUND$name hp: $healthBar ($hp)$RESET     \n"
+      s"$RED_BACKGROUND$name hp:$RESET $healthBar ($hp)     \n"
     } else {
       s"$name hp: $healthBar ($hp)     \n"
     }

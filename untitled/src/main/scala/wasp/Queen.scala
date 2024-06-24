@@ -2,9 +2,11 @@ package wasp
 
 class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolean = false) extends Wasps {
   val RED = "\u001b[31m"
+  val GOLD = "\u001b[33;1m"
   val RESET = "\u001b[0m"
   val RED_BACKGROUND = "\u001B[41m"
   val GREEN_BACKGROUND = "\u001b[42m"
+  val BOLD = "\u001b[1m"
   override def getHit: Queen = {
     hasHp
   }
@@ -29,8 +31,8 @@ class Queen(name: String, isAlive: Boolean = true, hp: Int = 80, lastHit: Boolea
 
   override def displayWasp: String = {
     if (lastHit) {
-      s"$RED$name hp: $healthBar ($hp)$RESET\n"
-    }  else s"$name hp: $healthBar ($hp)\n"
+      s"$RED$BOLD$name hp: $healthBar ($hp)$RESET\n"
+    }  else s"$GOLD$BOLD$name$RESET$BOLD hp: $healthBar ($hp)$RESET\n"
   }
 
   def healthBar: String = {

@@ -6,20 +6,20 @@ object WaspGame extends App {
 //  val  drone = Drone("Drone", true).getHit.getHit.getHit
 def createNewWasps(): List[Wasps] = {
   List(
-    new Queen("Queen"),
-    new Worker("w1"),
-    new Worker("w2"),
-    new Worker("w3"),
-    new Worker("w4"),
-    new Worker("w5"),
-    new Drone("d1"),
-    new Drone("d2"),
-    new Drone("d3"),
-    new Drone("d4"),
-    new Drone("d5"),
-    new Drone("d6"),
-    new Drone("d7"),
-    new Drone("d8")
+    new Queen("QUEEN   "),
+    new Worker("WORKER 1"),
+    new Worker("WORKER 2"),
+    new Worker("WORKER 3"),
+    new Worker("WORKER 4"),
+    new Worker("WORKER 5"),
+    new Drone("DRONE  1"),
+    new Drone("DRONE  2"),
+    new Drone("DRONE  3"),
+    new Drone("DRONE  4"),
+    new Drone("DRONE  5"),
+    new Drone("DRONE  6"),
+    new Drone("DRONE  7"),
+    new Drone("DRONE  8")
   )
 }
 
