@@ -14,7 +14,7 @@ class Interface(var playerName: String) {
     startGameOrReadRules()
   }
 
-  def rules(): Unit = {
+  private def rules(): Unit = {
     println(" - You must face 14 wasps and eliminate the queen")
     println(" - Write the given word to attack")
     println(" - You may write 'quit' to exit the game early")
@@ -42,7 +42,7 @@ class Interface(var playerName: String) {
     }
   }
 
-  def displayLeaderboard(): Unit = {
+  private def displayLeaderboard(): Unit = {
     val statsFile = "C:\\Users\\bahee\\nology\\scala\\projects\\wasp-game\\scala-wasp-game\\untitled\\src\\scores.csv"
     val playerStats = Source.fromFile(statsFile).getLines().toList
     val individualStats = playerStats.map { player =>

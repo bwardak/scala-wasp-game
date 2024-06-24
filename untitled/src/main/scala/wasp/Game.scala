@@ -2,7 +2,9 @@ package wasp
 
 
 import Words.words
+
 import java.io.{File, FileWriter, PrintWriter}
+import scala.annotation.tailrec
 import scala.io.StdIn.*
 import scala.language.postfixOps
 import scala.util.Random
@@ -16,7 +18,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
   winCondition()
 
 
-  def displayWasps(): Unit = {
+  private def displayWasps(): Unit = {
     printLine()
     enemyWasps.foreach(w => println(w.displayWasp))
     println("")
@@ -31,7 +33,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
   }
 
 
-  def attack(): Game = {
+  private def attack(): Game = {
     val random = new Random()
     println("")
     println("")
@@ -47,7 +49,8 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     Game(newWasps, playerName, hits + 1, timeTaken + elapsedTime)
   }
 
-  def nextAction(): Unit = {
+  @tailrec
+  private def nextAction(): Unit = {
     val random = new Random()
     val randomWord = words(random.nextInt(words.length))
     println(s"\nType $randomWord to fire: ")
@@ -60,7 +63,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     }
   }
 
-  def winCondition(): Unit = {
+  private def winCondition(): Unit = {
     if (enemyWasps.head.hitpoints == 0) {
       val removedQueen = enemyWasps.tail
       val endTimer = System.nanoTime()
@@ -90,7 +93,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
     }
   }
 
-  def printLine(): Unit = {
+  private def printLine(): Unit = {
     println("\n".repeat(3))
     println("-".repeat(200))
     println("\n".repeat(3))
