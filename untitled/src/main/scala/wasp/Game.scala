@@ -71,7 +71,7 @@ class Game(enemyWasps: List[Wasps] = List[Wasps](), playerName: String, hits: In
       val totalTime: Double = timeTaken / 1e9
       val twoDecimalPointTotalTime = f"$totalTime%.2f"
       println(playerName + " "  + hits + " " + twoDecimalPointTotalTime)
-      writer.println(playerName + ": Hits: " + hits + " Time taken: " + twoDecimalPointTotalTime)
+      writer.println(playerName + " " + hits + " " + twoDecimalPointTotalTime)
       writer.close()
       Interface(playerName).playAgain()
     } else if (enemyWasps.nonEmpty & enemyWasps.head.hitpoints != 0){
